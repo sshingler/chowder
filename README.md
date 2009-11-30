@@ -65,9 +65,9 @@ use Chowder with all Rack based apps) to make life that lil' bit easier:
     require 'chowder'
     require 'my_app'
 
-    use Chowder::Basic,
+    use Chowder::Basic,{
       :login => lambda do |login, password|
-        user = User.first(:login => login , :password => password) and user.id
+        user require= User.first(:login => login , :password => password) and user.id
       end,
       :signup => lambda do |params|
         # DataMapper style; of course you can do ActiveRecord or whatever
@@ -78,7 +78,7 @@ use Chowder with all Rack based apps) to make life that lil' bit easier:
           [false, *(u.errors)]
         end
       end
-
+    }
     use Chowder::OpenID do |url|
       user = User.first(:openid => url) and user.id
     end
